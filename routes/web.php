@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/players', 'PlayerController@getPlayerNames');
+Route::get('/player/{id}', 'PlayerController@getPlayerInfo');
