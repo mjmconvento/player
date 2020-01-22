@@ -27,6 +27,7 @@ class PlayerController extends Controller
 
     /**
      * @param int $id
+     *
      * @return string
      */
     public function getPlayerInfo(int $id): string

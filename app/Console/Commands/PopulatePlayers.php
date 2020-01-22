@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Classes\PlayerFormatter;
+use App\Classes\PlayerParser;
 use App\Models\Player;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -29,17 +30,11 @@ class PopulatePlayers extends Command
     protected $description = 'Populates players table';
 
     /**
-     * @var PlayerFormatter $formatter
-     */
-    private $formatter;
-
-    /**
      * @return void
      */
-    public function __construct(PlayerFormatter $formatter)
+    public function __construct()
     {
         parent::__construct();
-        $this->formatter = $formatter;
     }
 
     /**
@@ -47,15 +42,14 @@ class PopulatePlayers extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(PlayerFormatter $formatter, PlayerParser $parser)
     {
         Player::truncate();
-
-        $response = json_decode(
-            file_get_contents(self::API_URL)
+        
+        Player::insert(
+            $formatter->formatPlayerInsertInfo(
+                $parser->parse(self::API_URL)
+            )
         );
-
-        $players = $this->formatter->formatPlayerInsertInfo($response->elements);
-        Player::insert($players);
     }
 }

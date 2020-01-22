@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Classes\PlayerFormatter;
+use App\Interfaces\FormatPlayerNamesInterface;
 use App\Models\Player;
 
 class PlayerRepository
@@ -12,7 +12,7 @@ class PlayerRepository
      */
     private $formatter;
 
-    public function __construct(PlayerFormatter $formatter)
+    public function __construct(FormatPlayerNamesInterface $formatter)
     {
         $this->formatter = $formatter;
     }

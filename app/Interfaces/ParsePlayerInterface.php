@@ -5,10 +5,10 @@ namespace App\Interfaces;
 use App\Models\Player;
 use Illuminate\Database\Eloquent\Collection;
 
-interface FormatPlayerInfoInterface
+interface ParsePlayerInterface
 {
     /**
-     * @param Player $player
+     * @param string $data
      */
-    public function formatPlayerInfo(Player $player);
+    public function parse(string $data);
 }

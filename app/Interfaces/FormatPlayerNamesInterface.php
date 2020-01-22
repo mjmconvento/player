@@ -9,8 +9,6 @@ interface FormatPlayerNamesInterface
 {
     /**
      * @param Player[] $players
-     *
-     * @return array
      */
     public function formatPlayerNames(Collection $players);
 }

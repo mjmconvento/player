@@ -3,11 +3,12 @@
 namespace App\Classes;
 
 use App\Interfaces\FormatPlayerInfoInterface;
+use App\Interfaces\FormatPlayerInsertInfoInterface;
 use App\Interfaces\FormatPlayerNamesInterface;
 use App\Models\Player;
 use Illuminate\Database\Eloquent\Collection;
 
-class PlayerFormatter implements FormatPlayerInfoInterface, FormatPlayerNamesInterface
+class PlayerFormatter implements FormatPlayerInfoInterface, FormatPlayerNamesInterface, FormatPlayerInsertInfoInterface
 {
     /**
      * @var string
@@ -80,7 +81,7 @@ class PlayerFormatter implements FormatPlayerInfoInterface, FormatPlayerNamesInt
 
             $collection[] = $player;
 
-            if ($key === self::RECORD_LIMIT) {
+            if ($key === self::RECORD_LIMIT - 1) {
                 break;
             }
         }
